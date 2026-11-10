@@ -1,0 +1,75 @@
+.shell { position: relative; min-height: 100svh; overflow-x: hidden; }
+.glow { position: fixed; left: -20%; right: -20%; bottom: -35%; height: 70%; pointer-events: none;
+  background: radial-gradient(55% 65% at 50% 100%, color-mix(in srgb, var(--quran) 38%, transparent), transparent 70%); }
+.wrap { position: relative; max-width: 680px; margin: 0 auto; padding: 0 18px 80px; }
+
+/* home */
+.hero { display: flex; align-items: center; gap: 16px; padding: 34px 0 18px; }
+.logo { flex: none; width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--gold); background: var(--surface); overflow: hidden; display: grid; place-items: center; }
+.logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero h1 { margin: 0; display: flex; align-items: baseline; gap: 12px; font-family: var(--font-display), Georgia, serif; font-weight: 500; font-size: 2.3rem; line-height: 1; }
+.hero h1 span { font-family: var(--font-arabic), "Amiri", serif; font-weight: 400; font-size: 2.1rem; color: var(--gold); }
+.list { list-style: none; margin: 0; padding: 0; }
+.row { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 13px 4px; border-bottom: 1px solid var(--line); }
+.row:hover .nm { color: var(--gold); }
+.num { width: 38px; height: 38px; display: grid; place-items: center; font-size: .8rem; color: var(--gold); position: relative; }
+.num::before, .num::after { content: ""; position: absolute; inset: 5px; border: 1px solid var(--gold); border-radius: 3px; opacity: .7; }
+.num::after { transform: rotate(45deg); }
+.num i { position: relative; font-style: normal; }
+.nm { font-weight: 500; }
+.sub { color: var(--muted); font-size: .82rem; }
+.ar { font-family: var(--font-arabic), "Amiri", serif; font-size: 1.5rem; }
+
+/* reader */
+.bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 6px; padding: 10px 0; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.title { flex: 1; text-align: center; font-weight: 500; }
+.title small { display: block; color: var(--muted); font-weight: 400; font-size: .75rem; }
+.ib { min-width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); display: grid; place-items: center; }
+span.ib { border-color: transparent; }
+/* book: paper is the palette's --ink, text is --bg, so the curl reads against the dark room */
+.book { display: flex; justify-content: center; align-items: center; padding: 18px 0 0; min-height: calc(100svh - 80px); }
+.flip { margin: 0 auto; }
+
+/* the paper: warm, with a soft shade where the page meets the spine */
+.page {
+  background:
+    linear-gradient(to right, rgba(0,0,0,.14), rgba(0,0,0,.04) 14px, transparent 42px),
+    linear-gradient(180deg, #f6f2ea, #ece6d8);
+  color: var(--bg);
+  overflow: hidden;
+  
+  will-change: transform;
+}
+.pageContent { height: 100%; padding: 36px 26px 22px; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: none; }
+.pageContent::-webkit-scrollbar { display: none; }
+.verse { min-height: 100%; display: flex; flex-direction: column; }
+.vt, .latin, .en { user-select: text; -webkit-user-select: text; }
+.vt { direction: rtl; text-align: right; font-family: var(--font-quran), "Amiri Quran", "Amiri", serif; font-size: clamp(1.4rem, 5.2vw, 2rem); line-height: 2.1; margin: auto 0 0; }
+.en { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid rgba(0,0,0,.15); color: #3a382f; line-height: 1.6; font-size: .95rem; }
+.ref { margin-top: auto; padding-top: 22px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: .78rem; color: #6b5a2c; pointer-events: none; }
+.vn { display: inline-grid; place-items: center; min-width: 2em; height: 2em; padding: 0 .3em; border: 1px solid #8a6d2f; border-radius: 999px; color: #6b5a2c; font-family: var(--font-arabic), "Amiri", serif; font-size: .95rem; }
+
+/* cover: a rigid board that swings open (data-density="hard"), green all the way to the edge */
+.coverPage {
+  background:
+    linear-gradient(to right, rgba(0,0,0,.35), transparent 30px),
+    radial-gradient(80% 60% at 50% 100%, color-mix(in srgb, var(--quran) 55%, transparent), transparent 70%),
+    color-mix(in srgb, var(--quran) 28%, var(--bg));
+  color: var(--ink);
+}
+.cover { position: relative; justify-content: center; align-items: center; text-align: center; padding: 40px 30px; }
+.cover::before { content: ""; position: absolute; inset: 14px; border: 3px double var(--gold); border-radius: 6px; pointer-events: none; }
+.coverAr { font-family: var(--font-quran), "Amiri Quran", "Amiri", serif; font-size: 3.4rem; line-height: 1.3; color: var(--gold); }
+.coverEn { font-family: var(--font-display), Georgia, serif; font-size: 1.6rem; margin-top: 10px; }
+.coverSub { color: var(--muted); margin-top: 6px; }
+.latin { margin: 14px 0 0; direction: ltr; font-style: italic; color: #6b5a2c; line-height: 1.55; font-size: .92rem; }
+
+/* verse tools: float next to the selected text, like the system Copy menu */
+.pop { position: fixed; z-index: 30; transform: translateX(-50%); width: max-content; max-width: min(94vw, 420px); display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding: 8px; border: 1px solid var(--gold); border-radius: 18px; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,.5); user-select: none; -webkit-user-select: none; animation: pop .16s ease-out; }
+.popAbove { transform: translate(-50%, -100%); }
+.act { min-width: 52px; height: 36px; padding: 0 13px; border: 1px solid var(--line); border-radius: 999px; font-size: .84rem; }
+.act[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }
+.actMain { background: var(--quran); border-color: var(--quran); color: #fff; font-weight: 600; }
+.note { flex-basis: 100%; text-align: center; font-size: .78rem; color: var(--muted); }
+@keyframes pop { from { opacity: 0; scale: .94; } }
+@media (prefers-reduced-motion: reduce) { .pop { animation: none; } }
